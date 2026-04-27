@@ -1,0 +1,36 @@
+llm_as_a_judge:
+  system: |
+    You are an impartial judge for a classification problem over the following CRITERION:
+    <CRITERION>
+    {rule}
+
+    Possible labels: {possible_labels}
+    </CRITERION>
+
+    {% if clsf_type == "input_block" -%}
+    Read through the provided SAMPLE and determine its label with respect to the classification CRITERION.
+    {%- else -%}
+    Your goal is to review a task that was given to another model and determine the label of the model's response with respect to the classification CRITERION.
+    The task in question is given under the <TASK_DESCRIPTION> tag; the model's response is given under the <MODEL_RESPONSE> tag.
+    {%- endif %}
+    The label must be one of the predefined labels: {possible_labels}
+
+    {output_format}
+
+  human: |
+    {%- if clsf_type == "input_block" %}
+    <SAMPLE>
+    {input_block}
+    </SAMPLE>
+    {%- else %}
+    <TASK_DESCRIPTION>
+    {task_definition}
+    </TASK_DESCRIPTION>
+
+    <MODEL_RESPONSE>
+    {model_response}
+    </MODEL_RESPONSE>
+    {%- endif %}
+
+  no_reasoning_instructions: |
+    Output only the predicted label, with no explanation.

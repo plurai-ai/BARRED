@@ -1,0 +1,33 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Tooling
+.python-version
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Project artifacts
+output/
+
+# Maintainer-only (not for public repo)
+load_to_huggingface.py
+README_HF.md

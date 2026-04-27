@@ -1,0 +1,12 @@
+classification_type: input_block
+dataset:
+  name: healthe
+  hf_dataset: arnonmz/BARRED
+  cluster: The agent's response contains health advice.
+  labels: ['True', 'False']
+  evaluator:
+    llm_config:
+      type: azure
+      name: gpt-4.1-mini
+      temperature: 0
+out_dir: ../output/results

@@ -1,0 +1,21 @@
+classification_type: task_and_response
+dataset:
+  name: plan_verification
+  hf_dataset: arnonmz/BARRED
+  cluster: |
+    The plan does not refer to a tool that does not exist.
+    The plan does not write explicit tool calls but rather refers to them abstractly.
+    The plan ends with '\n<end_plan>' and does not contain anything after it.
+  labels: ['PASS', 'FAIL']
+  evaluator:
+    llm_config:
+      type: azure
+      name: gpt-4.1-mini
+      temperature: 0
+    #llm_config:
+      #type: azure
+      #name: gpt-5-mini
+      #temperature: 1
+      #model_kwargs:
+        #reasoning_effort: "medium"
+out_dir: ../output/results
